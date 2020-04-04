@@ -4,12 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <title>Boggle Game</title>
 </head>
 
 <body>
-    {% block content %}
-    {% endblock %}
+    <table>
+        <thead>
+            <tr>
+                <th colspan="5">BOGGLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% block content %}
+            {% endblock %}
+        </tbody>
+    </table>
+    <script src="/static/app.js"></script>
 </body>
 
 </html>

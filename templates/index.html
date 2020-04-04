@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{ board[0][0] }}
+{% for row in range(5) %}
+<tr>
+    {% for cell in range(5) %}
+    <td>{{ board[row][cell] }}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
 {% endblock %}
