@@ -9,17 +9,30 @@
 </head>
 
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th colspan="5">BOGGLE</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% block content %}
-            {% endblock %}
-        </tbody>
-    </table>
+    <div id="container">
+        <div id="nav">
+            <h1>BOGGLE</h1>
+            <span>Score: <span id="score"></span></span>
+            <span>Time: <span id="time"></span></span>
+        </div>
+
+        <table class="wrapper">
+            <tbody id="table" hidden>
+                {% block content %}
+                {% endblock %}
+            </tbody>
+        </table>
+        <div class="guess">
+            <button id="startButton">Start!</button>
+            <form hidden action="/guess" method="POST" id="guessForm">
+                <input type="text" placeholder="Guess HERE!!" id="guessText" name="guess">
+                <button>Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/static/app.js"></script>
 </body>
 
