@@ -29,6 +29,21 @@
                 <button>Submit</button>
             </form>
         </div>
+        <div id="stats" hidden>
+            <div id="timesPlayedDiv">
+                <p>High Score: <span id="highScore">
+                        {% block score %}
+                        {{ score }}
+                        {% endblock %}
+                    </span></p>
+                <button id="playAgain">Play Again?</button>
+                <p>Times Played: <span id="timesPlayed">
+                        {% block timesPlayed %}
+                        {{ played }}
+                        {% endblock %}
+                    </span></p>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

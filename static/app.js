@@ -1,7 +1,9 @@
 let score = 0;
-let time = 60;
+let time = 3;
 $('#score').text(score);
 $('#time').text(time);
+let played = $("#timesPlayed").text();
+let highScore = $("#highScore").text();
 
 $(".guess").prepend("<p class='result'></p>");
 
@@ -11,6 +13,10 @@ $("#startButton").on("click", function () {
     $("#guessForm").show();
     let guessForm = $("#guessForm");
     countdown(time, guessForm)
+});
+
+$("#playAgain").on("click", function () {
+    location.reload()
 });
 
 $("#guessForm").on("submit", async function (e) {
@@ -45,15 +51,20 @@ function countdown(time, hideThis) {
         $("#time").text(time);
         if (!time) {
             clearInterval(interval);
-            hideThis.hide()
-            saveScoreAndTimesPlayed()
+            hideThis.hide();
+            saveScore();
+            $("#stats").show();
         }
     }, 1000)
 }
 
-function saveScoreAndTimesPlayed() {
+async function saveScore() {
     let score = $("#score").text();
+    played++;
+    $("#timesPlayed").text(played)
     let res = await axios.post("/save", {
-        score: score
-    });
+        score: score,
+        played: played
+    })
+    $("#highScore").text(res.data);
 }
