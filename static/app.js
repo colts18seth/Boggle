@@ -1,5 +1,5 @@
 let score = 0;
-let time = 3;
+let time = 60;
 $('#score').text(score);
 $('#time').text(time);
 let played = $("#timesPlayed").text();
@@ -27,9 +27,14 @@ $("#guessForm").on("submit", async function (e) {
     }
     let guessLength = newGuess.length;
 
-    let res = await axios.post("/guess", {
-        guess: newGuess
+    let res = await axios({
+        method: "post",
+        url: "/guess",
+        data: {
+            guess: newGuess
+        }
     });
+
     $("#guessText").val("");
 
     if (res.data == "ok") {
@@ -62,9 +67,13 @@ async function saveScore() {
     let score = $("#score").text();
     played++;
     $("#timesPlayed").text(played)
-    let res = await axios.post("/save", {
-        score: score,
-        played: played
-    })
+    let res = await axios({
+        method: "post",
+        url: "/save",
+        data: {
+            score: score,
+            played: played
+        }
+    });
     $("#highScore").text(res.data);
 }

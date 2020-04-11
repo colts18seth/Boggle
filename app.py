@@ -9,7 +9,7 @@ boggle_game = Boggle()
 
 @app.route('/')
 def index():
-    """make new board"""
+    """ Make New Board """
     board = boggle_game.make_board()
     session["board"] = board
 
@@ -30,8 +30,8 @@ def index():
 @app.route('/guess', methods=["POST"])
 def guess():
     """ handle guess """    
-    raw = request.get_json()
-    guess = raw["guess"]
+    json = request.get_json() 
+    guess = json["guess"]
     board = session["board"]    
     check_word = boggle_game.check_valid_word(board, guess)
     
@@ -40,10 +40,11 @@ def guess():
 @app.route('/save', methods=["POST"])
 def save():
     """ save highscore and times played """
-    raw = request.get_json()
-    played = raw["played"]
+    
+    json = request.get_json()
+    played = json["played"]
     session['times_played'] = played   
-    score = raw["score"]
+    score = json["score"]
     high_score = session["high_score"]
 
     if int(score) > int(high_score):
